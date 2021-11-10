@@ -24,7 +24,6 @@ public class SchedulingAlgorithm {
             PrintStream out = new PrintStream(new FileOutputStream(resultsFile));
             setID(processVector);
             Priority.sortBurstTime(processVector);
-            Priority.setPriority(processVector);
             Comparator comp = new Priority();
             processVector.sort(comp);
             sProcess process = (sProcess) processVector.elementAt(currentProcess);

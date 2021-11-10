@@ -43,7 +43,7 @@ public class Priority implements Comparator {
             return  result;
         });
 
-
+        setPriority(processVector);
 
     }
     public static void setPriority(Vector<sProcess> processVector) {
