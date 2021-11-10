@@ -39,7 +39,7 @@ public class Priority implements Comparator {
         Collections.sort(processVector, (o1, o2) -> {
             sProcess pr1 = o1;
             sProcess pr2 = o2;
-            int result = (pr2.ioblocking - pr1.ioblocking);
+            int result = (pr1.ioblocking - pr2.ioblocking);
             return  result;
         });
 
