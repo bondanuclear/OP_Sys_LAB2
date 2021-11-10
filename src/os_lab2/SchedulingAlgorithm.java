@@ -1,6 +1,5 @@
 package os_lab2;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Vector;
 import java.io.*;
@@ -24,7 +23,8 @@ public class SchedulingAlgorithm {
 
             PrintStream out = new PrintStream(new FileOutputStream(resultsFile));
             setID(processVector);
-            Priority.increasePriority(processVector);
+            Priority.sortBurstTime(processVector);
+            Priority.setPriority(processVector);
             Comparator comp = new Priority();
             processVector.sort(comp);
             sProcess process = (sProcess) processVector.elementAt(currentProcess);
@@ -39,7 +39,7 @@ public class SchedulingAlgorithm {
                         out.close();
                         return result;
                     }
-                    addProcess(processVector);
+                    //addProcess(processVector);
                     if (processVector.isEmpty())
                         break;
                     currentProcess++;
@@ -58,7 +58,7 @@ public class SchedulingAlgorithm {
                     process.numblocked++;
                     process.ionext = 0;
                     previousProcess = currentProcess;
-                    processVector = addProcess(processVector);
+                    processVector = filterProcess(processVector);
                     if (processVector.isEmpty())
                         break;
                     currentProcess++;
@@ -84,9 +84,10 @@ public class SchedulingAlgorithm {
         return result;
     }
 
-    private static Vector<sProcess> addProcess(Vector<sProcess> processVector) {
+    private static Vector<sProcess> filterProcess(Vector<sProcess> processVector) {
         Vector<sProcess> vector = new Vector<>();
         for (sProcess process : processVector) {
+            //System.out.println(process.priority + " " + process.ioblocking + " " + process.cputime);
             if (process.cputime > process.cpudone)
                 vector.add(process);
         }

@@ -108,8 +108,8 @@ public class Scheduling {
                 }
                 X = X * standardDev;
                 int cputime = (int) X + meanDev;
-                int priority = (int) ((int) 1 + (Math.random() * 4));
-                processVector.addElement(new sProcess(cputime,i*100,0,0,0,priority,-1));
+                //int priority = (int) ((int) 1 + (Math.random() * 4));
+                processVector.addElement(new sProcess(cputime,i*100,0,0,0,0,-1));
                 i++;
             }
         }
